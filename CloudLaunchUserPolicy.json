@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListAllBuckets",
+            "Effect": "Allow",
+            "Action": ["s3:ListBucket"],
+            "Resource": [
+                "arn:aws:s3:::cloudlaunch-site-bucket-david-yaya",
+                "arn:aws:s3:::cloudlaunch-private-bucket-david-yaya",
+                "arn:aws:s3:::cloudlaunch-visible-only-bucket-david-yaya"
+            ]
+        },
+        {
+            "Sid": "ReadSiteBucket",
+            "Effect": "Allow",
+            "Action": ["s3:GetObject"],
+            "Resource": "arn:aws:s3:::cloudlaunch-site-bucket-david-yaya/*"
+        },
+        {
+            "Sid": "ReadWritePrivateBucket",
+            "Effect": "Allow",
+            "Action": ["s3:GetObject", "s3:PutObject"],
+            "Resource": "arn:aws:s3:::cloudlaunch-private-bucket-david-yaya/*"
+        },
+        {
+            "Sid": "NoAccessToVisibleOnlyContent",
+            "Effect": "Deny",
+            "Action": ["s3:GetObject", "s3:PutObject"],
+            "Resource": "arn:aws:s3:::cloudlaunch-visible-only-bucket-david-yaya/*"
+        }
+    ]
+}
